@@ -17,7 +17,7 @@ class MyApp extends GetView {
       title: "GetXStandard",
       useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
-      home:HomeScreen(),
+      initialRoute: Routes.HOME,
       defaultTransition: Transition.circularReveal,
       getPages: AppPages.routes,
       locale: MySharedPref.getCurrentLocal(),
