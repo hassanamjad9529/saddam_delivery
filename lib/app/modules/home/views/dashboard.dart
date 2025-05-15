@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getx_standard/app/modules/home/views/home.dart';
+import 'package:getx_standard/config/theme/light_theme_colors.dart';
+import 'package:getx_standard/utils/constants.dart';
 
 class SaddamBottomNav extends StatefulWidget {
   const SaddamBottomNav({super.key});
@@ -24,44 +27,98 @@ class _SaddamBottomNavState extends State<SaddamBottomNav> {
     });
   }
 
+  Color get selectedColor => LightThemeColors.primaryColorBlue;
+  Color get unselectedColor => const Color(0xFFd7dce3);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
+      body: ScrollConfiguration(
+        behavior: const ScrollBehavior().copyWith(overscroll: false),
+        child: IndexedStack(
+          index: _selectedIndex,
+          children: _screens,
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.account_balance_wallet,
-              color: Colors.blue,
-            ),
-            label: 'Wallet',
-            
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
           ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: Colors.blue,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 8,
+              offset: Offset(0, -2),
+            ),
+          ],
+        ),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          child: BottomNavigationBar(
+            enableFeedback: false,
+            selectedFontSize: 12.sp,
+            unselectedFontSize: 12.sp,
+            backgroundColor: Colors.transparent,
+            type: BottomNavigationBarType.fixed,
+            selectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: selectedColor,
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: unselectedColor,
+            ),
+            selectedItemColor: selectedColor,
+            unselectedItemColor: unselectedColor,
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            elevation: 0,
+            items: [
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  DashboardImages.walletbottomPng,
+                  height: 24,
+                  width: 24,
+                  color: _selectedIndex == 0 ? selectedColor : unselectedColor,
+                ),
+                label: 'Wallet',
               ),
-              label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.blue,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  DashboardImages.homeBottomPng,
+                  height: 24,
+                  width: 24,
+                  color: _selectedIndex == 1 ? selectedColor : unselectedColor,
+                ),
+                label: 'Home',
               ),
-              label: 'Profile'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.blue,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  DashboardImages.profileBottomPng,
+                  height: 24,
+                  width: 24,
+                  color: _selectedIndex == 2 ? selectedColor : unselectedColor,
+                ),
+                label: 'Profile',
               ),
-              label: 'Profile'),
-        ],
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  DashboardImages.profileBottomPng,
+                  height: 24,
+                  width: 24,
+                  color: _selectedIndex == 3 ? selectedColor : unselectedColor,
+                ),
+                label: 'Profile',
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

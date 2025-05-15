@@ -1,0 +1,2 @@
+/Users/hassanamjad/flutterProjects/hifah_projects/saddam_delivery/android/app/.cxx/Debug/542iu416/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/hassanamjad/flutterProjects/hifah_projects/saddam_delivery/android/app/.cxx/Debug/542iu416/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:getx_standard/app/components/global-widgets/my_buttons.dart';
+import 'package:getx_standard/app/components/global-widgets/search_text_field.dart';
+import 'package:getx_standard/app/modules/home/widgets/balance_card.dart';
+import 'package:getx_standard/app/modules/home/widgets/driver_balance_card.dart';
+import 'package:getx_standard/app/modules/home/widgets/stat_card.dart';
+import 'package:getx_standard/config/theme/light_theme_colors.dart';
+import 'package:getx_standard/config/theme/my_fonts.dart';
+import 'package:getx_standard/utils/app_spacer.dart';
+import 'package:getx_standard/utils/constants.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -16,11 +27,10 @@ class _DashboardScreenState extends State<DashboardScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
-  }
-
-  void _onBottomNavTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
+    _tabController.addListener(() {
+      setState(() {
+        _selectedIndex = _tabController.index + 1;
+      });
     });
   }
 
@@ -30,156 +40,437 @@ class _DashboardScreenState extends State<DashboardScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Statistics",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 16,
-            runSpacing: 16,
+          Text("Statistics",
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+          AppSpacer(heightRatio: 1),
+          GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            mainAxisSpacing: 16,
+            crossAxisSpacing: 16,
+            childAspectRatio: 1.6,
             children: [
-              _buildStatCard("Shipment", "28 Shipment", Icons.local_shipping,
-                  Colors.orange),
-              _buildStatCard(
-                  "In Progress", "28 Shipment", Icons.sync, Colors.indigo),
-              _buildStatCard(
-                  "Delivered", "28 Shipment", Icons.inventory_2, Colors.blue),
-              _buildStatCard(
-                  "Cancelled", "28 Shipment", Icons.cancel, Colors.red),
+              StatCard(
+                title: "Shipment   ",
+                subtitle: "28 Shipment",
+                AssetPath: DashboardImages.truckPng,
+                ColorContainer: Color(0xfff5b849),
+              ),
+              StatCard(
+                title: "In Progress",
+                subtitle: "28 Shipment",
+                AssetPath: DashboardImages.inProgressPng,
+                ColorContainer: Color(0xff3f51b7),
+              ),
+              StatCard(
+                title: "Delivered   ",
+                subtitle: "28 Shipment",
+                AssetPath: DashboardImages.deliveredPng,
+                ColorContainer: Color(0xff3272b1),
+              ),
+              StatCard(
+                title: "Cancelled",
+                subtitle: "28 Shipment",
+                AssetPath: DashboardImages.cancelledPng,
+                ColorContainer: Color(0xffe6533c),
+              ),
             ],
           ),
           const SizedBox(height: 24),
-          _buildBalanceCard("60.00 JOD", "Total balance of shipments accrued",
-              Icons.account_balance_wallet),
+          BalanceCard(
+              amount: "60.00 JOD",
+              label: "Total balance of shipments accrued",
+              AssetPath: DashboardImages.walletPng),
           const SizedBox(height: 16),
-          _buildDriverBalanceCard("8.25 JOD", "Driver balance is due", true),
+          DriverBalanceCard(
+              amount: "8.25 JOD",
+              label: "Driver balance is due",
+              isPositive: true),
           const SizedBox(height: 8),
-          _buildDriverBalanceCard("8.25 JOD", "Driver balance is due", false),
+          DriverBalanceCard(
+              amount: "8.25 JOD",
+              label: "Driver balance is due",
+              isPositive: false),
         ],
       ),
     );
   }
 
-  Widget _buildStatCard(
-      String title, String subtitle, IconData icon, Color color) {
-    return Container(
-      width: 150,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-      ),
+  Widget _buildOrdersTab() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 32, color: color),
-          const SizedBox(height: 12),
-          Text(title,
-              style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.bold, color: color)),
-          Text(subtitle, style: const TextStyle(color: Colors.black54)),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBalanceCard(String amount, String label, IconData icon) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        gradient:
-            LinearGradient(colors: [Colors.blueAccent, Colors.lightBlueAccent]),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 40, color: Colors.white),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(amount,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white)),
-              Text(label, style: const TextStyle(color: Colors.white70)),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDriverBalanceCard(String amount, String label, bool isPositive) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                isPositive ? Icons.trending_up : Icons.trending_down,
-                color: isPositive ? Colors.green : Colors.red,
+              Text(
+                "Order: 23",
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(width: 8),
-              Text(amount, style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(
+                width: 200.w,
+                child: SearchTextField(
+                  textEditingController: _searchController,
+                  submit: (value) {
+                    // handle submit
+                  },
+                  clearing: () {
+                    _searchController.clear();
+                    // handle clear
+                  },
+                  hint: 'Search',
+                  isClearButtonVisible: false,
+                  isSearchButtonVisible: true,
+                ),
+              ),
             ],
           ),
-          Text("View all",
-              style: TextStyle(color: isPositive ? Colors.green : Colors.red)),
+          AppSpacer(heightRatio: 0.5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Select Status",
+                style: TextStyle(
+                  fontSize: 12.sp,
+                ),
+              ),
+              Spacer(),
+              Row(
+                children: [
+                  SizedBox(
+                    height: 30.h,
+                    width: 95.w,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // handle filter
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: LightThemeColors.primaryColorBlue,
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          side: BorderSide(color: Colors.grey.shade300),
+                        ),
+                        alignment: Alignment.center,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Sort by"),
+                          SizedBox(width: 4),
+                          Icon(Icons.arrow_drop_down, size: 20),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  SizedBox(
+                    height: 30.h,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // handle filter
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: LightThemeColors.primaryColorBlue,
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          side: BorderSide(color: Colors.grey.shade300),
+                        ),
+                        alignment: Alignment.center,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Filter by"),
+                          SizedBox(width: 4),
+                          Icon(Icons.arrow_drop_down, size: 20),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          AppSpacer(heightRatio: 1),
+          Card(
+            color: Colors.white,
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 65.h,
+                        width: 65.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: LightThemeColors.primaryColorBlue,
+                          shape: BoxShape.rectangle,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            DashboardImages.orderVanPng,
+                            height: 40.h,
+                            width: 40.w,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "NOB-69",
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "Recipient number: 077987865",
+                              style: TextStyle(
+                                  fontSize: 10.sp, color: Colors.grey),
+                            ),
+                            Text(
+                              "Date: 2 June",
+                              style: TextStyle(
+                                  fontSize: 10.sp, color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Pending",
+                            style: TextStyle(
+                              color: LightThemeColors.primaryColorBlue,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 2),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Color(0xffe6533c),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              "UNACCOUNTED",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  AppSpacer(heightRatio: 1),
+                  PrimaryButton(
+                    title: "View Full Order",
+                    onPressed: () {},
+                    inactive: false,
+                  )
+                ],
+              ),
+            ),
+          ),
+          AppSpacer(heightRatio: 1),
         ],
       ),
     );
   }
 
-  Widget _buildTabBody() {
-    switch (_selectedIndex) {
-      case 1:
-        return _buildHomeTab();
-      default:
-        return const Center(child: Text("Other Tab Content Here"));
-    }
-  }
+  late final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LightThemeColors.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text("Dashboard"),
+        surfaceTintColor: LightThemeColors.backgroundColor,
+        backgroundColor: LightThemeColors.backgroundColor,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            DashboardImages.bIconPng,
+            width: 25.w,
+            height: 25.h,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              DashboardImages.notificationIconPng,
+              width: 25.w,
+              height: 25.h,
+            ),
+          ),
+        ],
+        title: FittedBox(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0xFF26BDD7), Color(0xFF3D52B6)],
+              ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Row(
+                children: [
+                  Image.asset(
+                    DashboardImages.avatarPng,
+                  ),
+                  const AppSpacer(widthRatio: 0.5),
+                  Text(
+                    "Rank 5",
+                    style: TextStyle(fontSize: 12.sp),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
         centerTitle: true,
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: TabBar(
-            controller: _tabController,
-            isScrollable: true,
-            tabs: const [
-              Tab(icon: Icon(Icons.list), text: "Orders"),
-              Tab(icon: Icon(Icons.table_chart), text: "Table all Shipment"),
-              Tab(icon: Icon(Icons.flash_on), text: "Shipment Instant"),
-              Tab(icon: Icon(Icons.support_agent), text: "Support"),
+          preferredSize: Size.fromHeight(95.h),
+          child: Column(
+            children: [
+              AppSpacer(heightRatio: 0.5),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: SearchTextField(
+                  textEditingController: _searchController,
+                  submit: (value) {
+                    // handle submit
+                  },
+                  clearing: () {
+                    _searchController.clear();
+                    // handle clear
+                  },
+                  hint: 'Search',
+                  isClearButtonVisible: false,
+                  isSearchButtonVisible: true,
+                ),
+              ),
+              AppSpacer(heightRatio: 0.5),
+              TabBar(
+                controller: _tabController,
+                tabAlignment: TabAlignment.center,
+                indicatorColor: LightThemeColors.indicatorColor,
+                isScrollable: true,
+                tabs: [
+                  Tab(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          DashboardImages.avatarPng,
+                          width: 20,
+                          height: 20,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          "Orders",
+                          style: TextStyle(
+                              fontSize: 10.sp, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Tab(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          DashboardImages.avatarPng,
+                          width: 20,
+                          height: 20,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          "Table All Shipment",
+                          style: TextStyle(
+                              fontSize: 10.sp, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Tab(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.list),
+                        SizedBox(width: 8),
+                        Text(
+                          "Shipment Instant",
+                          style: TextStyle(
+                              fontSize: 10.sp, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Tab(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.person),
+                        SizedBox(width: 8),
+                        Text(
+                          "Support",
+                          style: TextStyle(
+                              fontSize: 10.sp, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
       ),
-      body: _buildTabBody(),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onBottomNavTapped,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance_wallet), label: 'Wallet'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Profile'), // duplicate for now
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          _buildOrdersTab(),
+          _buildHomeTab(),
+          const Center(child: Text("Shipment Instant Tab Content Here")),
+          const Center(child: Text("Support Tab Content Here")),
         ],
       ),
     );

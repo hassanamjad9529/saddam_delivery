@@ -17,6 +17,7 @@ dependencies:
   get: ^4.6.6
   logger: ^2.5.0
   dio: ^5.7.0
+  flutter_svg: ^2.1.0
   flutter_screenutil: ^5.9.3
   http: ^1.2.2
   shared_preferences: ^2.3.4
@@ -72,6 +73,7 @@ flutter:
     - assets/images/
     - assets/images/icon-splash/
     - assets/images/onBoarding/
+    - assets/images/dashboard/
     - assets/images/loader_icon/
     - assets/vectors/
     - assets/fonts/

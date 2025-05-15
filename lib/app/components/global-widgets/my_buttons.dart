@@ -6,11 +6,11 @@ import '../../../config/theme/light_theme_colors.dart';
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton(
       {super.key,
-        required this.title,
-        required this.onPressed,
-        required this.inactive,
-        this.backgroundColor,
-        this.foregroundColor});
+      required this.title,
+      required this.onPressed,
+      required this.inactive,
+      this.backgroundColor,
+      this.foregroundColor});
   final String title;
   final VoidCallback onPressed;
   final bool inactive;
@@ -18,14 +18,14 @@ class PrimaryButton extends StatelessWidget {
   final Color? foregroundColor;
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return SizedBox(
-      height: 55.h,
+      height: 40.h,
+      width: double.infinity,
       child: ElevatedButton(
         onPressed: inactive == true ? null : onPressed,
         style: ElevatedButton.styleFrom(
           foregroundColor: foregroundColor ?? Colors.white,
-          backgroundColor: backgroundColor ?? theme.primaryColor,
+          backgroundColor: backgroundColor ?? LightThemeColors.primaryColorBlue,
           splashFactory: NoSplash.splashFactory,
           shadowColor: Colors.white,
           shape: RoundedRectangleBorder(
@@ -37,7 +37,7 @@ class PrimaryButton extends StatelessWidget {
           title,
           style: TextStyle(
             fontSize: 16.sp,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -48,9 +48,9 @@ class PrimaryButton extends StatelessWidget {
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton(
       {super.key,
-        required this.title,
-        required this.onPressed,
-        required this.inactive});
+      required this.title,
+      required this.onPressed,
+      required this.inactive});
   final String title;
   final VoidCallback onPressed;
   final bool inactive;
@@ -87,10 +87,10 @@ class SecondaryButton extends StatelessWidget {
 class SecondaryButtonWithIcon extends StatelessWidget {
   const SecondaryButtonWithIcon(
       {super.key,
-        required this.title,
-        required this.onPressed,
-        required this.iconData,
-        required this.inactive});
+      required this.title,
+      required this.onPressed,
+      required this.iconData,
+      required this.inactive});
   final String title;
   final VoidCallback onPressed;
   final IconData iconData;
@@ -138,10 +138,10 @@ class SecondaryButtonWithIcon extends StatelessWidget {
 class PrimaryButtonWithIcon extends StatelessWidget {
   const PrimaryButtonWithIcon(
       {super.key,
-        required this.title,
-        required this.onPressed,
-        required this.iconData,
-        required this.inactive});
+      required this.title,
+      required this.onPressed,
+      required this.iconData,
+      required this.inactive});
   final String title;
   final VoidCallback onPressed;
   final IconData iconData;

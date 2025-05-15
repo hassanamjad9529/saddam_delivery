@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:getx_standard/utils/constants.dart';
 import 'package:remixicon/remixicon.dart';
 
 import '../../../config/theme/light_theme_colors.dart';
@@ -25,9 +27,9 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Container(
-      height: 45.sp,
+      height: 37.sp,
       decoration: BoxDecoration(
-        color: LightThemeColors.fillColor,
+        color: LightThemeColors.backgrounGrey,
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(
           width: 1,
@@ -53,7 +55,7 @@ class SearchTextField extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 contentPadding: EdgeInsets.symmetric(horizontal: 15.sp),
-                fillColor: LightThemeColors.fillColor,
+                fillColor: LightThemeColors.backgrounGrey,
                 errorStyle: TextStyle(
                   height: .1,
                   fontSize: 12.sp,
@@ -62,7 +64,7 @@ class SearchTextField extends StatelessWidget {
                 hintText: hint,
                 hintStyle: TextStyle(
                   color: LightThemeColors.bodyTextSecondaryColor,
-                  fontSize: 13.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -95,9 +97,10 @@ class SearchTextField extends StatelessWidget {
             visible: isSearchButtonVisible,
             child: Padding(
               padding: EdgeInsets.only(right: 15.sp),
-              child: Icon(
-                Remix.search_line,
-                color: LightThemeColors.bodyTextSecondaryColor,
+              child: SvgPicture.asset(
+                DashboardImages.searchSvg,
+                height: 24.sp,
+                width: 24.sp,
               ),
             ),
           ),
