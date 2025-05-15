@@ -1,0 +1,98 @@
+name: getx_standard
+description: "A GetX Architecture by Mir Moktadir"
+
+publish_to: 'none'
+version: 7.0.8+54
+
+environment:
+  sdk: ^3.6.0
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
+  logger: ^2.5.0
+  dio: ^5.7.0
+  flutter_screenutil: ^5.9.3
+  http: ^1.2.2
+  shared_preferences: ^2.3.4
+  iconsax: ^0.0.8
+  file_picker: ^9.0.2
+  lottie: ^3.3.0
+  flutter_otp_text_field: ^1.4.0+2
+  flutter_native_splash: ^2.4.3
+  firebase_core: ^3.9.0
+  firebase_messaging: ^15.1.6
+  carousel_slider: ^5.0.0
+  cached_network_image: ^3.4.1
+  intl: ^0.20.1
+  url_launcher: ^6.3.1
+  device_info_plus: ^11.2.0
+  flutter_local_notifications: ^18.0.1
+  connectivity_plus: ^6.1.1
+  image_picker: ^1.1.2
+  image_cropper: ^9.0.0
+  web_socket_channel: ^3.0.1
+  pretty_dio_logger: ^1.4.0
+  timezone: ^0.10.0
+  pusher_channels_flutter: ^2.4.0
+  remixicon: ^1.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^5.0.0
+  mockito:
+  build_runner:
+  hive_generator:
+  pub_semver:
+
+flutter_native_splash:
+  background_image: "assets/images/icon-splash/splash_background.png"
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
+  android_12:
+    image: "assets/images/icon-splash/splash_icon.png"
+    icon_background_color: "#ffffff"
+
+
+flutter:
+
+
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/icon-splash/
+    - assets/images/onBoarding/
+    - assets/images/loader_icon/
+    - assets/vectors/
+    - assets/fonts/
+    - animations/
+    - shorebird.yaml
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 700
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 900
+
