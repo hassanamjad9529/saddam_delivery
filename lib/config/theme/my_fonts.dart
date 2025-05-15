@@ -23,6 +23,7 @@ class MyFonts {
   static TextStyle get appBarTextStyle => getAppFontType;
 
   // chips text font
+  // chips text font
   static TextStyle get chipTextStyle => getAppFontType;
 
   // appbar font size
