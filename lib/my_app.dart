@@ -14,11 +14,9 @@ class MyApp extends GetView {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "GetXStandard",
       useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.HOME,
-      defaultTransition: Transition.circularReveal,
+      initialRoute: Routes.SignIn,
       getPages: AppPages.routes,
       locale: MySharedPref.getCurrentLocal(),
       translations: LocalizationService.getInstance(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getx_standard/my_app.dart';
 
 import 'app/data/local/my_shared_pref.dart';
@@ -8,9 +9,15 @@ import 'app/service/helper/network_connectivity.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await _initializeApp(); 
+  await _initializeApp();
 
-  runApp(const MyApp());
+  runApp(ScreenUtilInit(
+    designSize: const Size(375, 812),
+    minTextAdapt: true,
+    splitScreenMode: true,
+    useInheritedMediaQuery: true,
+    builder: (context, child) => MyApp(),
+  ));
 }
 
 Future<void> _initializeApp() async {

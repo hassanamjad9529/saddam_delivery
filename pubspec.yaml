@@ -41,6 +41,7 @@ dependencies:
   timezone: ^0.10.0
   pusher_channels_flutter: ^2.4.0
   remixicon: ^1.4.1
+  flutter_svg: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,8 @@ flutter:
     - assets/images/icon-splash/
     - assets/images/onBoarding/
     - assets/images/loader_icon/
+    - assets/images/splash/
+    - assets/images/auth/
     - assets/vectors/
     - assets/fonts/
     - animations/
