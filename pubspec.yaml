@@ -47,7 +47,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+  rename_app: ^1.6.3
   flutter_lints: ^5.0.0
   mockito:
   build_runner:
@@ -55,19 +55,18 @@ dev_dependencies:
   pub_semver:
 
 flutter_native_splash:
-  background_image: "assets/images/icon-splash/splash_background.png"
+  background_image: "assets/images/icon-splash/white_background1.jpeg"
   android: true
   ios: true
   web: false
   fullscreen: true
   android_12:
-    image: "assets/images/icon-splash/splash_icon.png"
+    image: "assets/images/icon-splash/white_background1.jpeg"
+    fullscreen: true
     icon_background_color: "#ffffff"
 
 
 flutter:
-
-
   uses-material-design: true
   assets:
     - assets/images/
@@ -97,4 +96,3 @@ flutter:
           weight: 500
         - asset: assets/fonts/Cairo-SemiBold.ttf
           weight: 900
-

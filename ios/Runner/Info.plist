@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>GetxStandard</string>
+    <string>Saddam</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>getx_standard</string>
+    <string>Saddam</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
@@ -59,9 +59,9 @@
     <key>UIStatusBarHidden</key>
     <true/>
     <key>LSApplicationQueriesSchemes</key>
-      <array>
-         <string>sms</string>
-         <string>tel</string>
-      </array>
+    <array>
+      <string>sms</string>
+      <string>tel</string>
+    </array>
   </dict>
 </plist>

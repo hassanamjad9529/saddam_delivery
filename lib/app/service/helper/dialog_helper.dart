@@ -179,18 +179,18 @@ class DialogHelper {
               alignment: Alignment.center,
               children: [
                 // App Icon
-                Container(
-                  height: 50.sp,
-                  width: 50.sp,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(
-                        AppImages.kLoaderIcon,
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   height: 50.sp,
+                //   width: 50.sp,
+                //   decoration: BoxDecoration(
+                //     shape: BoxShape.circle,
+                //     image: DecorationImage(
+                //       image: AssetImage(
+                //         AppImages.kLoaderIcon,
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 // Loader
                 SizedBox(
                   height: 60.sp,
@@ -223,10 +223,10 @@ class DialogHelper {
                   width: 50.sp,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage(
-                      AppImages.kLoaderIcon,
-                    )),
+                    // image: DecorationImage(
+                    //     image: AssetImage(
+                    //   // AppImages.kLoaderIcon,
+                    // )),
                   ),
                 ),
                 // Loader

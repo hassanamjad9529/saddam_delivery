@@ -3,9 +3,9 @@ class SnackBarDurations {
 }
 
 class AppImages {
-  static String get kAppIconPng => 'assets/images/icon-splash/app_icon.png';
-  static String get kLoaderIcon => 'assets/images/loader_icon/loader_icon.png';
-  static String get kNoImage => 'assets/images/no_image.png';
+  // static String get kAppIconPng => 'assets/images/icon-splash/app_icon.png';
+  // static String get kLoaderIcon => 'assets/images/loader_icon/loader_icon.png';
+  // static String get kNoImage => 'assets/images/no_image.png';
 }
 
 class DashboardImages {
@@ -13,7 +13,6 @@ class DashboardImages {
   static String get avatarPng => 'assets/images/dashboard/avatar.png';
   static String get bIconPng => 'assets/images/dashboard/b_icon.png';
   static String get notificationIconPng => 'assets/images/dashboard/notification_icon.png';
-  static String get ordersTabSvg => 'assets/images/dashboard/order_tab.svg';
   static String get inProgressPng => 'assets/images/dashboard/in_progress.png';
   static String get truckPng => 'assets/images/dashboard/truck_con.png';
   static String get deliveredPng => 'assets/images/dashboard/delivered.png';
@@ -25,4 +24,8 @@ class DashboardImages {
   static String get homeBottomPng => 'assets/images/dashboard/home_bottom.png';
   static String get profileBottomPng => 'assets/images/dashboard/Profile_bottom.png';
   static String get orderVanPng => 'assets/images/dashboard/order_van.png';
+  static String get ordersTabPng => 'assets/images/dashboard/orders_tab.png';
+  static String get tableAllShipmentTabPng => 'assets/images/dashboard/table_all_shipment.png';
+  static String get shipInstantTabPng => 'assets/images/dashboard/shipment_instant.png';
+  static String get supportTabPng => 'assets/images/dashboard/support.png';
 }

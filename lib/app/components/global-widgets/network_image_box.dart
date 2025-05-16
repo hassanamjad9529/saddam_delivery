@@ -53,7 +53,7 @@ class NetworkImageBox extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Image.asset(
-          AppImages.kNoImage,
+          DashboardImages.cancelledPng,
           fit: BoxFit.contain,
         ),
       ),
