@@ -1,7 +1,7 @@
 // filepath: [my_app.dart](http://_vscodecontentref_/1)
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_standard/app/modules/home/views/home.dart';
+import 'package:getx_standard/app/modules/dashbaord/views/home_screen.dart';
 
 import 'app/data/local/my_shared_pref.dart';
 import 'app/routes/app_pages.dart';
@@ -14,11 +14,9 @@ class MyApp extends GetView {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "GetXStandard",
       useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.HOME,
-      defaultTransition: Transition.circularReveal,
+      initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
       locale: MySharedPref.getCurrentLocal(),
       translations: LocalizationService.getInstance(),

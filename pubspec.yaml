@@ -74,6 +74,8 @@ flutter:
     - assets/images/onBoarding/
     - assets/images/dashboard/
     - assets/images/loader_icon/
+    - assets/images/splash/
+    - assets/images/auth/
     - assets/vectors/
     - assets/fonts/
     - animations/

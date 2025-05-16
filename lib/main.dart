@@ -9,7 +9,7 @@ import 'app/service/helper/network_connectivity.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await _initializeApp(); 
+  await _initializeApp();
 
   runApp(ScreenUtilInit(
       designSize: const Size(375, 812),
